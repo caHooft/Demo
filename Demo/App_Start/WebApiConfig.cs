@@ -21,6 +21,7 @@ namespace Demo
             builder.ContainerName = "DefaultContainer";
             builder.EntitySet<Person>("People");
             builder.EntitySet<Trip>("Trips");
+            builder.EntitySet<Car>("Cars");
             var edmModel = builder.GetEdmModel();
             return edmModel;
         }

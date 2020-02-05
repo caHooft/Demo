@@ -22,16 +22,19 @@ namespace Demo.DataSource
         }
         public List<Person> People { get; set; }
         public List<Trip> Trips { get; set; }
+
         private DemoDataSources()
         {
             this.Reset();
             this.Initialize();
         }
+
         public void Reset()
         {
             this.People = new List<Person>();
             this.Trips = new List<Trip>();
         }
+
         public void Initialize()
         {
             this.Trips.AddRange(new List<Trip>()
@@ -57,6 +60,7 @@ namespace Demo.DataSource
                     Name = "Trip 3"
                 }
             });
+
             this.People.AddRange(new List<Person>
             {
                 new Person()
