@@ -9,7 +9,7 @@ namespace Demo.Models
     {
         [Key]
         public int ID { get; set; }
-        [Required]
+
         public double AmountMade { get; set; }
         public _Brands Brand { get; set;}
         public String Colour { get; set; }
