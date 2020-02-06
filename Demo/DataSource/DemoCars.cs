@@ -42,7 +42,7 @@ namespace Demo.DataSource
                 {
                     ID = 0,
                     AmountMade = 1,
-                    _brand = Brands.Audi,
+                    Brand = _Brands.Audi,
                     Colour= "red",
                     CreationTime = DateTime.Today,
                     APK = true
@@ -51,7 +51,7 @@ namespace Demo.DataSource
                 {
                     ID = 1,
                     AmountMade = 1234234,
-                    _brand = Brands.BMW,
+                    Brand = _Brands.BMW,
                     Colour= "Blue",
                     CreationTime = DateTime.UtcNow,
                     APK = false
@@ -60,7 +60,7 @@ namespace Demo.DataSource
                 {
                     ID = 2,
                     AmountMade = 353451,
-                    _brand = Brands.Ferrari,
+                    Brand = _Brands.Mini,
                     Colour= "red",
                     CreationTime = DateTime.Now,
                     APK = true
@@ -69,7 +69,7 @@ namespace Demo.DataSource
                 {
                     ID = 3,
                     AmountMade = 1678678,
-                    _brand = Brands.Ford,
+                    Brand = _Brands.Ford,
                     Colour= "Blue",
                     CreationTime = DateTime.UtcNow,
                     APK = false
@@ -78,7 +78,7 @@ namespace Demo.DataSource
                 {
                     ID = 4,
                     AmountMade = 123424,
-                    _brand = Brands.Honda,
+                    Brand = _Brands.Honda,
                     Colour= "red",
                     CreationTime = DateTime.Today,
                     APK = true
@@ -87,7 +87,7 @@ namespace Demo.DataSource
                 {
                     ID = 5,
                     AmountMade = 1345353,
-                    _brand = Brands.Nissan,
+                    Brand = _Brands.Nissan,
                     Colour= "Blue",
                     CreationTime = DateTime.Now,
                     APK = false
