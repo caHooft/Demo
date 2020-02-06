@@ -19,9 +19,12 @@ namespace Demo
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
             builder.Namespace = "Demos";
             builder.ContainerName = "DefaultContainer";
-            builder.EntitySet<Person>("People");
-            builder.EntitySet<Trip>("Trips");
-            builder.EntitySet<Car>("Cars");
+            var people = builder.EntitySet<Person>("People");
+            var trips = builder.EntitySet<Trip>("Trips");
+            var cars = builder.EntitySet<Car>("Cars");
+            people.EntityType.Count().Filter().OrderBy().Expand().Select();
+            trips.EntityType.Count().Filter().OrderBy().Expand().Select();
+            cars.EntityType.Count().Filter().OrderBy().Expand().Select();
             var edmModel = builder.GetEdmModel();
             return edmModel;
         }

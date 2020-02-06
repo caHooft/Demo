@@ -8,9 +8,9 @@ using Microsoft.AspNet.OData;
 
 namespace Demo.Controllers
 {
-    [EnableQuery]
     public class CarsController : ODataController
     {
+        [EnableQuery]
         public IHttpActionResult Get()
         {
             return Ok(DemoCars.Instance.Cars.AsQueryable());

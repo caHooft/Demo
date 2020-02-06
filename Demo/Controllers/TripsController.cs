@@ -8,9 +8,10 @@ using Microsoft.AspNet.OData;
 
 namespace Demo.Controllers
 {
-    [EnableQuery]
+    
     public class TripsController : ODataController
     {
+        [EnableQuery]
         public IHttpActionResult Get()
         {
             return Ok(DemoDataSources.Instance.Trips.AsQueryable());
