@@ -12,8 +12,6 @@ namespace Demo.Controllers
     [EnableQuery(AllowedQueryOptions = AllowedQueryOptions.All)]
     public class PeopleController : ODataController
     {
-
-        
         public IHttpActionResult Get()
         {
             return Ok(DemoDataSources.Instance.People.AsQueryable());

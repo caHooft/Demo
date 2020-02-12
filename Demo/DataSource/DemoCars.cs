@@ -44,7 +44,7 @@ namespace Demo.DataSource
                     AmountMade = 1,
                     Brand = _Brands.Audi,
                     Colour= "red",
-                    CreationTime = DateTime.Today,
+                    TimeWhenAddedToDatabase = DateTime.Now,
                     APK = true
                 },
                 new Car()
@@ -53,7 +53,7 @@ namespace Demo.DataSource
                     AmountMade = 1234234,
                     Brand = _Brands.BMW,
                     Colour= "Blue",
-                    CreationTime = DateTime.UtcNow,
+                    TimeWhenAddedToDatabase = DateTime.Now,
                     APK = false
                 },
                 new Car()
@@ -62,7 +62,7 @@ namespace Demo.DataSource
                     AmountMade = 353451,
                     Brand = _Brands.Mini,
                     Colour= "red",
-                    CreationTime = DateTime.Now,
+                    TimeWhenAddedToDatabase = DateTime.Now,
                     APK = true
                 },
                 new Car()
@@ -71,7 +71,7 @@ namespace Demo.DataSource
                     AmountMade = 1678678,
                     Brand = _Brands.Ford,
                     Colour= "Blue",
-                    CreationTime = DateTime.UtcNow,
+                    TimeWhenAddedToDatabase = DateTime.Now,
                     APK = false
                 },
                 new Car()
@@ -80,7 +80,7 @@ namespace Demo.DataSource
                     AmountMade = 123424,
                     Brand = _Brands.Honda,
                     Colour= "red",
-                    CreationTime = DateTime.Today,
+                    TimeWhenAddedToDatabase = DateTime.Now,
                     APK = true
                 },
                 new Car()
@@ -89,7 +89,7 @@ namespace Demo.DataSource
                     AmountMade = 1345353,
                     Brand = _Brands.Nissan,
                     Colour= "Blue",
-                    CreationTime = DateTime.Now,
+                    TimeWhenAddedToDatabase = DateTime.Now,
                     APK = false
                 },
             });
