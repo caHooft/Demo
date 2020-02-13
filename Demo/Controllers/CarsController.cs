@@ -25,11 +25,6 @@ namespace Demo.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            //db.Products.Add(product);
-            //await db.SaveChangesAsync();
-
-            //await DemoCars.Instance.Cars.SaveChangesAsync();
             
             DemoCars.Instance.Cars.Add(car);
 
@@ -43,14 +38,19 @@ namespace Demo.Controllers
                 return BadRequest(ModelState);
             }
 
-            //Car car = DemoCars.Instance.Cars.Find(key);
-
             if (key != car.ID)
             {
                 return BadRequest();
             }
 
-            DemoCars.Instance.Cars.RemoveAt(key);
+            if (key == car.ID)
+            {
+                DemoCars.Instance.Cars.RemoveAt(key);
+                
+                car.TimeWhenAddedToDatabase = DateTime.Now;
+
+                DemoCars.Instance.Cars.Insert(key, car);
+            }
 
             return Updated(car);
         }
@@ -63,9 +63,6 @@ namespace Demo.Controllers
                 return BadRequest(ModelState);
             }
 
-            //var target = DemoCars.Instance.Cars.; 
-            //contactContext.Contacts.Remove(contact);
-            //await contactContext.SaveChangesAsync();
             DemoCars.Instance.Cars.RemoveAt(key);
             return StatusCode(HttpStatusCode.NoContent);
         }
