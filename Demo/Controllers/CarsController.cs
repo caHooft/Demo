@@ -66,8 +66,5 @@ namespace Demo.Controllers
             DemoCars.Instance.Cars.RemoveAt(key);
             return StatusCode(HttpStatusCode.NoContent);
         }
-
-
-
     }
 }
