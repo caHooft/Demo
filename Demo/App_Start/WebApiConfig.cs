@@ -15,18 +15,34 @@ namespace Demo
             config.EnsureInitialized();
         }
         private static IEdmModel GetEdmModel()
-        {
-            ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+        { 
+            ODataModelBuilder builder = new ODataModelBuilder();
+
             builder.Namespace = "Demos";
             builder.ContainerName = "DefaultContainer";
-            var people = builder.EntitySet<Person>("People");
-            var trips = builder.EntitySet<Trip>("Trips");
-            var cars = builder.EntitySet<Car>("Cars");
-            people.EntityType.Count().Filter().OrderBy().Expand().Select();
-            trips.EntityType.Count().Filter().OrderBy().Expand().Select();
-            cars.EntityType.Count().Filter().OrderBy().Expand().Select();
-            var edmModel = builder.GetEdmModel();
-            return edmModel;
+
+            var cars = builder.EntityType<Car>();
+            cars.HasKey(c => c.ID);
+            cars.Property(c => c.AmountMade);
+            cars.Property(c => c.APK);
+            cars.Property(c => c.Colour);
+            cars.Property(c => c.TimeWhenAddedToDatabase);
+
+            //cars.EnumProperty<_Brands>(c => c.Brand);
+            //cars.Property<_Brands>(c => c.Brand);
+                       
+
+            //var people = builder.EntitySet<Person>("People");
+            //var trips = builder.EntitySet<Trip>("Trips");
+            builder.EntitySet<Car>("Cars");
+
+            //people.EntityType.Count().Filter().OrderBy().Expand().Select();
+            //trips.EntityType.Count().Filter().OrderBy().Expand().Select();
+            cars.Count().Filter().OrderBy().Expand().Select();
+
+            //var edmModel = builder.GetEdmModel();
+
+            return builder.GetEdmModel();
         }
     }
 }
