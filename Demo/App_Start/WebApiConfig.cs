@@ -7,6 +7,8 @@ using Microsoft.AspNet.OData.Extensions;
 
 namespace Demo
 {
+    //public enum _Brands { Tesla, Ferrari, Mini, Porsche, Volkswagen, Nissan, Audi, Ford, Honda, BMW, Mercedes, Toyota };
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
@@ -26,6 +28,7 @@ namespace Demo
             builder.ContainerName = "DefaultContainer";
             builder.EntitySet<Car>("Cars");
             builder.EnumType<_Brands>();
+            
 
             var cars = builder.EntityType<Car>();
 

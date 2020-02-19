@@ -21,11 +21,7 @@ namespace Demo.Controllers
 
         public IHttpActionResult Post(Car car)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            
+
             DemoCars.Instance.Cars.Add(car);
 
             return Created(car);
