@@ -21,6 +21,10 @@ namespace Demo.Controllers
 
         public IHttpActionResult Post(Car car)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             DemoCars.Instance.Cars.Add(car);
 
@@ -53,7 +57,6 @@ namespace Demo.Controllers
 
         public async Task<IHttpActionResult> Delete([FromODataUri] int key)
         {
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
