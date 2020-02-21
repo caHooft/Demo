@@ -14,8 +14,11 @@ namespace Demo
             config.MapODataServiceRoute("odata", null, GetEdmModel(), new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer));
             config.EnsureInitialized();
         }
-        static IEdmModel GetEdmModel()
-        { 
+
+        public static IEdmModel GetEdmModel()
+        {
+            //use convention version to run without adding problems
+            //var builder = new ODataConventionModelBuilder();
             var builder = new ODataModelBuilder();
 
             //EntitySetConfiguration<Car> cars = builder.EntitySet<Car>("cars");
@@ -45,7 +48,6 @@ namespace Demo
             //builder.EnumType<_Brands>();
 
             var cars = builder.EntityType<Car>();
-
             cars.HasKey(c => c.ID);
             cars.Property(c => c.AmountMade);
             cars.Property(c => c.APK);
@@ -53,34 +55,16 @@ namespace Demo
             cars.Property(c => c.TimeWhenAddedToDatabase);
             cars.EnumProperty(c => c.Brand);
 
-            //builder.ComplexType<JobParameter>();
-            //builder.ComplexType<JobStatusResult>();
-            //builder.EnumType<JobStatus>();
-            //builder.EnumType<JobParameterType>();
-
-            //cars.EnumProperty(c => c.Brand);
-
-            //cars.EnumProperty<_Brands>(c => c.Brand).Name = "Brand";
-            //cars.EnumProperty(c => c.Brand);
-
-            //cars.EnumProperty<_Brands>(c => c.Brand);
-
-            //cars.Property<_Brands>(c => c.Brand);
-
-            //EdmEnumType color = new EdmEnumType("NS", "Color");
-            //color.AddMember(new EdmEnumMember(color, "Red", EdmValue (0)));
-            //model.AddElement(color);
-
-            //var people = builder.EntitySet<Person>("People");
-            //var trips = builder.EntitySet<Trip>("Trips");
+            cars.Count().Filter().OrderBy().Expand().Select();
             //
 
             //people.EntityType.Count().Filter().OrderBy().Expand().Select();
             //trips.EntityType.Count().Filter().OrderBy().Expand().Select();
-            cars.Count().Filter().OrderBy().Expand().Select();
+            //cars.Count().Filter().OrderBy().Expand().Select();
 
-            //var edmModel = builder.GetEdmModel();
+            var edmModel = builder.GetEdmModel();
 
+            //return builder.GetEdmModel();
             return builder.GetEdmModel();
         }
     }

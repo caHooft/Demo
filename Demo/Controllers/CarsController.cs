@@ -21,14 +21,10 @@ namespace Demo.Controllers
 
         public IHttpActionResult Post(Car car)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             DemoCars.Instance.Cars.Add(car);
-
-            return Created(car);
+            
+            //return Created(car);
+            return StatusCode(HttpStatusCode.Created);
         }
 
         public async Task<IHttpActionResult> Patch (int key, Car car)
