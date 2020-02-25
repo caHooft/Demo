@@ -21,16 +21,35 @@ namespace Demo
             //use convention version to run without adding problems
             //var builder = new ODataConventionModelBuilder();
             var builder = new ODataModelBuilder();
+            builder.Namespace = "Demos";
+            builder.ContainerName = "DefaultContainer";
+
             var entity = new EntityTypeConfiguration();
+
+            EntityTypeConfiguration car = builder.AddEntityType(typeof(Car));
+            
+
+
+            /*
+            //I am trying a new way of creating a car through addEntityType
+            var carConfig = builder.AddEntityType(typeof(Car));
+
+            carConfig.HasKey(typeof(Car).GetProperty("ID"));
+            carConfig.AddProperty(typeof(Car).GetProperty("AmountMade"));
+            carConfig.AddProperty(typeof(Car).GetProperty("APK"));
+            carConfig.AddProperty(typeof(Car).GetProperty("Colour"));
+            carConfig.AddProperty(typeof(Car).GetProperty("TimeWhenAddedToDatabase"));
+            carConfig.AddEnumProperty(typeof(Car).GetProperty("Brand"));
+            //sadly this doesnt show up in the databse somehow prob did something wrong but i dont know what
+            */
+
+
+
+            //cars.Count().Filter().OrderBy().Expand().Select();
 
             //EntitySetConfiguration<Car> cars = builder.EntitySet<Car>("cars");
             //EntityTypeConfiguration<Car> Car = cars.EntityType;
             //Car.EnumProperty<_Brands>(c => c.Brand).Name = "Brand";
-
-            builder.Namespace = "Demos";
-            builder.ContainerName = "DefaultContainer";
-            builder.EntitySet<Car>("Cars");
-
 
             //deze werkt zonder dat je elk type hoeft te declaren maar dan moet je dit in de gegenereerde code doen (client side)
             //builder.EnumType<_Brands>();
@@ -49,6 +68,20 @@ namespace Demo
             _Brands.Member(Models._Brands.Tesla);
             _Brands.Member(Models._Brands.Toyota);
             _Brands.Member(Models._Brands.Volkswagen);
+
+            /*
+                This is my old way of makeing a entity set with all the required stuff for Car
+            builder.EntitySet<Car>("Cars");
+            var cars = builder.EntityType<Car>();
+
+            cars.HasKey(c => c.ID);
+            cars.Property(c => c.AmountMade);
+            cars.Property(c => c.APK);
+            cars.Property(c => c.Colour);
+            cars.Property(c => c.TimeWhenAddedToDatabase);
+            cars.EnumProperty(c => c.Brand);
+            cars.Count().Filter().OrderBy().Expand().Select();
+            */
 
             //visual studio gaf aan dat dit beter zou moeten wezen dan AddEntityType echter werkt het niet echter mischien handig even te onderzoeken
             //EdmEntityType ;
@@ -76,8 +109,6 @@ namespace Demo
             //if i give it a diffrent variabel it still says its a type...
             //var a = Microsoft.AspNet.OData.Builder.EntityTypeConfiguration<int a>;
 
-            //var a = 
-
             //var a = entity.AddProperty(Car);
             //var a = entity;
 
@@ -97,17 +128,6 @@ namespace Demo
             //builder.AddEntityType(Person);
 
 
-
-            var cars = builder.EntityType<Car>();
-
-            cars.HasKey(c => c.ID);
-            cars.Property(c => c.AmountMade);
-            cars.Property(c => c.APK);
-            cars.Property(c => c.Colour);
-            cars.Property(c => c.TimeWhenAddedToDatabase);
-            cars.EnumProperty(c => c.Brand);
-
-            cars.Count().Filter().OrderBy().Expand().Select();
 
             //people.EntityType.Count().Filter().OrderBy().Expand().Select();
             //trips.EntityType.Count().Filter().OrderBy().Expand().Select();
