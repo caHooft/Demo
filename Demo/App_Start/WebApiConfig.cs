@@ -27,21 +27,23 @@ namespace Demo
             var entity = new EntityTypeConfiguration();
 
             EntityTypeConfiguration car = builder.AddEntityType(typeof(Car));
+
             
-
-
-            /*
             //I am trying a new way of creating a car through addEntityType
             var carConfig = builder.AddEntityType(typeof(Car));
 
-            carConfig.HasKey(typeof(Car).GetProperty("ID"));
+            //NavigationPropertyConfiguration carNavigationProperty = car.AddNavigationProperty(typeof(Car).GetProperty("ID"), EdmMultiplicity.ZeroOrOne);
+
+            //sadly this doesnt show up in the databse somehow prob did something wrong but i dont know what
+
+            //carConfig.HasKey(typeof(Car).GetProperty("ID"));
             carConfig.AddProperty(typeof(Car).GetProperty("AmountMade"));
             carConfig.AddProperty(typeof(Car).GetProperty("APK"));
             carConfig.AddProperty(typeof(Car).GetProperty("Colour"));
             carConfig.AddProperty(typeof(Car).GetProperty("TimeWhenAddedToDatabase"));
             carConfig.AddEnumProperty(typeof(Car).GetProperty("Brand"));
-            //sadly this doesnt show up in the databse somehow prob did something wrong but i dont know what
-            */
+            
+            
 
 
 
