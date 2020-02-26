@@ -16,12 +16,12 @@ namespace Demo.Controllers
         [EnableQuery]
         public IHttpActionResult Get()
         {
-            return Ok(DemoCars.Instance.Cars.AsQueryable());
+            return Ok(DemoDataSources.Instance.Cars.AsQueryable());
         }
 
         public IHttpActionResult Post(Car car)
         {
-            DemoCars.Instance.Cars.Add(car);
+            DemoDataSources.Instance.Cars.Add(car);
             
             //return Created(car);
             return StatusCode(HttpStatusCode.Created);
@@ -41,11 +41,11 @@ namespace Demo.Controllers
 
             if (key == car.ID)
             {
-                DemoCars.Instance.Cars.RemoveAt(key);
+                DemoDataSources.Instance.Cars.RemoveAt(key);
                 
                 car.TimeWhenAddedToDatabase = DateTime.Now;
 
-                DemoCars.Instance.Cars.Insert(key, car);
+                DemoDataSources.Instance.Cars.Insert(key, car);
             }
 
             return Updated(car);
@@ -58,7 +58,7 @@ namespace Demo.Controllers
                 return BadRequest(ModelState);
             }
 
-            DemoCars.Instance.Cars.RemoveAt(key);
+            DemoDataSources.Instance.Cars.RemoveAt(key);
             return StatusCode(HttpStatusCode.NoContent);
         }
     }

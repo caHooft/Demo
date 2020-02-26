@@ -18,24 +18,13 @@ namespace Demo
 
         public static IEdmModel GetEdmModel ()
         {
-            //use convention version to run without adding problems
-            //var builder = new ODataConventionModelBuilder();
             var builder = new ODataModelBuilder();
             builder.Namespace = "Demos";
             builder.ContainerName = "DefaultContainer";
 
-            //Op het moment niet in gebruik
-            //var entity = new EntityTypeConfiguration();
+            //EntityTypeConfiguration car = builder.AddEntityType(typeof(Car));
 
-            EntityTypeConfiguration car = builder.AddEntityType(typeof(Car));
-
-            
-            //I am trying a new way of creating a car through addEntityType
-            var carConfig = builder.AddEntityType(typeof(Car));
-
-            //NavigationPropertyConfiguration carNavigationProperty = car.AddNavigationProperty(typeof(Car).GetProperty("ID"), EdmMultiplicity.ZeroOrOne);
-
-            //sadly this doesnt show up in the databse somehow prob did something wrong but i dont know what
+            EntityTypeConfiguration carConfig = builder.AddEntityType(typeof(Car));
 
             carConfig.HasKey(typeof(Car).GetProperty("ID"));
             carConfig.AddProperty(typeof(Car).GetProperty("AmountMade"));
@@ -44,17 +33,24 @@ namespace Demo
             carConfig.AddProperty(typeof(Car).GetProperty("TimeWhenAddedToDatabase"));
             carConfig.AddEnumProperty(typeof(Car).GetProperty("Brand"));
 
-            EntitySetConfiguration manufacturers = builder.AddEntitySet("cars", car);
+            //new declaration of variabels of the enum
+            var _Brands = builder.AddEnumType(typeof(_Brands));
+            _Brands.AddMember(Models._Brands.Audi);
+            _Brands.AddMember(Models._Brands.BMW);
+            _Brands.AddMember(Models._Brands.Ferrari);
+            _Brands.AddMember(Models._Brands.Ford);
+            _Brands.AddMember(Models._Brands.Honda);
+            _Brands.AddMember(Models._Brands.Mercedes);
+            _Brands.AddMember(Models._Brands.Mini);
+            _Brands.AddMember(Models._Brands.Nissan);
+            _Brands.AddMember(Models._Brands.Porsche);
+            _Brands.AddMember(Models._Brands.Tesla);
+            _Brands.AddMember(Models._Brands.Toyota);
+            _Brands.AddMember(Models._Brands.Volkswagen);
 
-            //example entityset that doesnt work for some reason
-            //Mock<EntitySetConfiguration> entitySet = new Mock<EntitySetConfiguration>(MockBehavior.Strict);
+            EntitySetConfiguration Cars = builder.AddEntitySet("cars", carConfig);
 
-            //i dont use this anymore
-            //EntitySetConfiguration entitySet = new EntitySetConfiguration();
-           
-
-
-            //cars.Count().Filter().OrderBy().Expand().Select();
+            //car.Count().Filter().OrderBy().Expand().Select();
 
             //EntitySetConfiguration<Car> cars = builder.EntitySet<Car>("cars");
             //EntityTypeConfiguration<Car> Car = cars.EntityType;
@@ -63,8 +59,10 @@ namespace Demo
             //deze werkt zonder dat je elk type hoeft te declaren maar dan moet je dit in de gegenereerde code doen (client side)
             //builder.EnumType<_Brands>();
 
-            //declare de ENUM en geef de opties (members)
-            var _Brands = builder.EnumType<_Brands>();
+            /*
+            //old declare de ENUM en geef de opties (members)
+            //var _Brands = builder.EnumType<_Brands>();
+
             _Brands.Member(Models._Brands.Audi);
             _Brands.Member(Models._Brands.BMW);
             _Brands.Member(Models._Brands.Ferrari);
@@ -77,6 +75,8 @@ namespace Demo
             _Brands.Member(Models._Brands.Tesla);
             _Brands.Member(Models._Brands.Toyota);
             _Brands.Member(Models._Brands.Volkswagen);
+            */
+
             /*
             This is my old way of makeing a entity set with all the required stuff for Car
             builder.EntitySet<Car>("Cars");

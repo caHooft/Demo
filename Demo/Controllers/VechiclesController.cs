@@ -9,12 +9,12 @@ using Microsoft.AspNet.OData;
 namespace Demo.Controllers
 {
     
-    public class TripsController : ODataController
+    public class VechiclesController : ODataController
     {
         [EnableQuery]
         public IHttpActionResult Get()
         {
-            return Ok(DemoDataSources.Instance.Trips.AsQueryable());
+            return Ok(DemoDataSources.Instance.Vechicles.AsQueryable());
         }
     }
 }

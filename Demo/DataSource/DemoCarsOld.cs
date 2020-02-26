@@ -6,23 +6,23 @@ using Demo.Models;
 
 namespace Demo.DataSource
 {
-    public class DemoCars
+    public class DemoCarsOld
     {
-        private static DemoCars instance = null;
-        public static DemoCars Instance
+        private static DemoCarsOld instance = null;
+        public static DemoCarsOld Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new DemoCars();
+                    instance = new DemoCarsOld();
                 }
                 return instance;
             }
         }
         public List<Car> Cars { get; set; }
 
-        private DemoCars()
+        private DemoCarsOld()
         {
             this.Reset();
             this.Initialize();

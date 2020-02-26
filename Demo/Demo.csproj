@@ -142,15 +142,15 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CarsController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
-    <Compile Include="Controllers\TripsController.cs" />
-    <Compile Include="DataSource\DemoCars.cs" />
+    <Compile Include="Controllers\VechiclesController.cs" />
+    <Compile Include="DataSource\DemoCarsOld.cs" />
     <Compile Include="DataSource\DemoDataSources.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\Trip.cs" />
+    <Compile Include="Models\Vechicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

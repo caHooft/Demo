@@ -10,6 +10,6 @@ namespace Demo.Models
         [Required]
         public String Name { get; set; }
         public String Description { get; set; }
-        public List<Trip> Trips { get; set; }
+        
     }
 }
