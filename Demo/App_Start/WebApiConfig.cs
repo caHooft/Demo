@@ -24,7 +24,8 @@ namespace Demo
             builder.Namespace = "Demos";
             builder.ContainerName = "DefaultContainer";
 
-            var entity = new EntityTypeConfiguration();
+            //Op het moment niet in gebruik
+            //var entity = new EntityTypeConfiguration();
 
             EntityTypeConfiguration car = builder.AddEntityType(typeof(Car));
 
@@ -36,15 +37,21 @@ namespace Demo
 
             //sadly this doesnt show up in the databse somehow prob did something wrong but i dont know what
 
-            //carConfig.HasKey(typeof(Car).GetProperty("ID"));
+            carConfig.HasKey(typeof(Car).GetProperty("ID"));
             carConfig.AddProperty(typeof(Car).GetProperty("AmountMade"));
             carConfig.AddProperty(typeof(Car).GetProperty("APK"));
             carConfig.AddProperty(typeof(Car).GetProperty("Colour"));
             carConfig.AddProperty(typeof(Car).GetProperty("TimeWhenAddedToDatabase"));
             carConfig.AddEnumProperty(typeof(Car).GetProperty("Brand"));
-            
-            
 
+            EntitySetConfiguration manufacturers = builder.AddEntitySet("cars", car);
+
+            //example entityset that doesnt work for some reason
+            //Mock<EntitySetConfiguration> entitySet = new Mock<EntitySetConfiguration>(MockBehavior.Strict);
+
+            //i dont use this anymore
+            //EntitySetConfiguration entitySet = new EntitySetConfiguration();
+           
 
 
             //cars.Count().Filter().OrderBy().Expand().Select();
@@ -70,9 +77,8 @@ namespace Demo
             _Brands.Member(Models._Brands.Tesla);
             _Brands.Member(Models._Brands.Toyota);
             _Brands.Member(Models._Brands.Volkswagen);
-
             /*
-                This is my old way of makeing a entity set with all the required stuff for Car
+            This is my old way of makeing a entity set with all the required stuff for Car
             builder.EntitySet<Car>("Cars");
             var cars = builder.EntityType<Car>();
 
