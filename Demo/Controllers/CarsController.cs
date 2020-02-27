@@ -44,8 +44,11 @@ namespace Demo.Controllers
 
             if (key == car.ID)
             {
-                DemoDataSources.Instance.Cars.RemoveAt(key);
-                
+                DemoDataSources.Instance.Cars.RemoveAll(r => r.ID == key);
+
+                //old way
+                //DemoDataSources.Instance.Cars.RemoveAt(key);
+
                 car.TimeWhenAddedToDatabase = DateTime.Now;
 
                 DemoDataSources.Instance.Cars.Insert(key, car);
@@ -61,7 +64,8 @@ namespace Demo.Controllers
                 return BadRequest(ModelState);
             }
 
-            DemoDataSources.Instance.Cars.RemoveAt(key);
+            //DemoDataSources.Instance.Cars.RemoveAt(key);
+            DemoDataSources.Instance.Cars.RemoveAll(r => r.ID == key);
             return StatusCode(HttpStatusCode.NoContent);
         }
     }
