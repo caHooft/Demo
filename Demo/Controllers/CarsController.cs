@@ -25,9 +25,14 @@ namespace Demo.Controllers
             DemoDataSources.Instance.Cars.Add(car);
 
             var header = HttpRequestHeader.Accept;
-            //return Created(car);
+            
+            return Created(car);
 
-            return StatusCode(HttpStatusCode.Created);
+            //return Updated(car);
+
+            //return HttpRequestHeader.Accept;
+
+            //return StatusCode(HttpStatusCode.Created);
         }
 
         public async Task<IHttpActionResult> Patch (int key, Car car)
@@ -39,15 +44,17 @@ namespace Demo.Controllers
 
             if (key != car.ID)
             {
+                car.TimeWhenAddedToDatabase = DateTime.Now;
+
+                DemoDataSources.Instance.Cars.Insert(key, car);
+
                 return BadRequest();
             }
 
             if (key == car.ID)
             {
-                DemoDataSources.Instance.Cars.RemoveAll(r => r.ID == key);
 
-                //old way
-                //DemoDataSources.Instance.Cars.RemoveAt(key);
+                DemoDataSources.Instance.Cars.RemoveAll(r => r.ID == key);
 
                 car.TimeWhenAddedToDatabase = DateTime.Now;
 
@@ -64,7 +71,6 @@ namespace Demo.Controllers
                 return BadRequest(ModelState);
             }
 
-            //DemoDataSources.Instance.Cars.RemoveAt(key);
             DemoDataSources.Instance.Cars.RemoveAll(r => r.ID == key);
             return StatusCode(HttpStatusCode.NoContent);
         }
