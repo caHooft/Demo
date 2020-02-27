@@ -141,9 +141,9 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CarsController.cs" />
+    <Compile Include="Controllers\ODataControllerHelper.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
     <Compile Include="Controllers\VechiclesController.cs" />
-    <Compile Include="DataSource\DemoCarsOld.cs" />
     <Compile Include="DataSource\DemoDataSources.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

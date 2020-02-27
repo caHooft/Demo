@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Web;
 using Demo.DataSource;
 using Demo.Models;
 using System.Linq;
@@ -13,6 +11,9 @@ namespace Demo.Controllers
 {
     public class CarsController : ODataController
     {
+        public static object RouteData { get; internal set; }
+
+
         [EnableQuery]
         public IHttpActionResult Get()
         {
@@ -22,8 +23,10 @@ namespace Demo.Controllers
         public IHttpActionResult Post(Car car)
         {
             DemoDataSources.Instance.Cars.Add(car);
-            
+
+            var header = HttpRequestHeader.Accept;
             //return Created(car);
+
             return StatusCode(HttpStatusCode.Created);
         }
 
