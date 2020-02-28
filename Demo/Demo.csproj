@@ -141,7 +141,6 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CarsController.cs" />
-    <Compile Include="Controllers\ODataControllerHelper.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
     <Compile Include="Controllers\VechiclesController.cs" />
     <Compile Include="DataSource\DemoDataSources.cs" />

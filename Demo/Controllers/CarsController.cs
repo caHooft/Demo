@@ -6,6 +6,7 @@ using System.Web.Http;
 using Microsoft.AspNet.OData;
 using System.Threading.Tasks;
 using System.Net;
+using System.Net.Http;
 
 namespace Demo.Controllers
 {
@@ -20,19 +21,25 @@ namespace Demo.Controllers
             return Ok(DemoDataSources.Instance.Cars.AsQueryable());
         }
 
-        public IHttpActionResult Post(Car car)
+        public HttpResponseMessage Post(Car car)
         {
             DemoDataSources.Instance.Cars.Add(car);
 
-            var header = HttpRequestHeader.Accept;
-            
-            return Created(car);
+            //var header = HttpRequestHeader.Accept;
+
+            //return Created(car);
 
             //return Updated(car);
 
             //return HttpRequestHeader.Accept;
 
             //return StatusCode(HttpStatusCode.Created);
+            HttpResponseMessage response = Request.CreateResponse<Car>(HttpStatusCode.Created, car);
+
+            string uriToTheCreatedItem = Url.Route(null, new { id = car.ID });
+            response.Headers.Location = new Uri(Request.RequestUri, uriToTheCreatedItem);
+
+            return response;
         }
 
         public async Task<IHttpActionResult> Patch (int key, Car car)
