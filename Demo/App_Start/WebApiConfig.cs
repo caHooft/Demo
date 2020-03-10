@@ -12,7 +12,7 @@ namespace Demo
     {
         public static void Register(HttpConfiguration config)
         {
-            config.MapODataServiceRoute("odata", null, GetEdmModel(), new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer));
+            config.MapODataServiceRoute("odata", "odata", GetEdmModel(), new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer));
             config.EnsureInitialized();
         }
 
