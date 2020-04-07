@@ -9,7 +9,6 @@ namespace Demo.Models
         public String ID { get; set; }
         [Required]
         public String Name { get; set; }
-        public String Description { get; set; }
-        
+        //public List<Car> Cars { get; set; }
     }
 }

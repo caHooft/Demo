@@ -9,7 +9,8 @@ using Microsoft.AspNet.OData.Query;
 
 namespace Demo.Controllers
 {
-    [EnableQuery(AllowedQueryOptions = AllowedQueryOptions.All)]
+    [EnableQuery]
+    //[EnableQuery(AllowedQueryOptions = AllowedQueryOptions.All)]
     public class PeopleController : ODataController
     {
         public IHttpActionResult Get()

@@ -14,6 +14,6 @@ namespace Demo.Models
         public String Colour { get; set; }
         public DateTime TimeWhenAddedToDatabase { get; set; }
         public _Brands Brand { get; set; }
-        public List<Vechicle> Vechicles { get; set; }
+        public List<Person> People { get; set; }
     }
 }

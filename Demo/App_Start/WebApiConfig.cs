@@ -12,6 +12,7 @@ namespace Demo
     {
         public static void Register(HttpConfiguration config)
         {
+            DataSource.DemoDataSources.Instance.Initialize();
             config.MapODataServiceRoute("odata", "odata", GetEdmModel(), new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer));
             config.EnsureInitialized();
         }
@@ -24,6 +25,11 @@ namespace Demo
 
             //EntityTypeConfiguration car = builder.AddEntityType(typeof(Car));
 
+            EntityTypeConfiguration personConfig = builder.AddEntityType(typeof(Person));
+            personConfig.HasKey(typeof(Person).GetProperty("ID"));
+            personConfig.AddProperty(typeof(Person).GetProperty("Name"));
+            //carConfig.AddProperty(typeof(Car).GetProperty("Owners"));
+
             EntityTypeConfiguration carConfig = builder.AddEntityType(typeof(Car));
 
             carConfig.HasKey(typeof(Car).GetProperty("ID"));
@@ -32,6 +38,7 @@ namespace Demo
             carConfig.AddProperty(typeof(Car).GetProperty("Colour"));
             carConfig.AddProperty(typeof(Car).GetProperty("TimeWhenAddedToDatabase"));
             carConfig.AddEnumProperty(typeof(Car).GetProperty("Brand"));
+            carConfig.AddComplexProperty(typeof(Car).GetProperty("People"));
 
             //new declaration of variabels of the enum
             var _Brands = builder.AddEnumType(typeof(_Brands));
@@ -49,7 +56,7 @@ namespace Demo
             _Brands.AddMember(Models._Brands.Volkswagen);
 
             EntitySetConfiguration Cars = builder.AddEntitySet("cars", carConfig);
-
+            EntitySetConfiguration People = builder.AddEntitySet("people", personConfig);
             //car.Count().Filter().OrderBy().Expand().Select();
 
             //EntitySetConfiguration<Car> cars = builder.EntitySet<Car>("cars");

@@ -21,7 +21,6 @@ namespace Demo.DataSource
             }
         }
         public List<Person> People { get; set; }
-        public List<Vechicle> Vechicles { get; set; }
         public List<Car> Cars { get; set; }
 
         private DemoDataSources()
@@ -33,56 +32,31 @@ namespace Demo.DataSource
         public void Reset()
         {
             this.People = new List<Person>();
-            this.Vechicles = new List<Vechicle>();
             this.Cars = new List<Car>();
         }
 
         public void Initialize()
         {
-            this.Vechicles.AddRange(new List<Vechicle>()
-            {
-                new Vechicle()
-                {
-                    ID = "0"
-                },
-                new Vechicle()
-                {
-                    ID = "1"
-                },
-                new Vechicle()
-                {
-                    ID = "2"
-                },
-                new Vechicle()
-                {
-                    ID = "3"
-                }
-            });
-
-            this.People.AddRange(new List<Person>
+            this.People.AddRange(new List<Person>()
             {
                 new Person()
                 {
                     ID = "001",
                     Name = "Angel",
-                    //Vechicles = new List<Vechicle>{Vechicles[0], Vechicles[1]}
                 },
                 new Person()
                 {
                     ID = "002",
                     Name = "Clyde",
-                    Description = "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-                    //Vechicles = new List<Vechicle>{Vechicles[2], Vechicles[3]}
                 },
                 new Person()
                 {
                     ID = "003",
                     Name = "Elaine",
-                    Description = "It has roots in a piece of classical Latin literature from 45 BC, making Lorems over 2000 years old."
-                }
+                   }
             });
 
-            this.Cars.AddRange(new List<Car>()
+            this.Cars.AddRange(new List<Car>
             {
                 new Car()
                 {
@@ -91,7 +65,8 @@ namespace Demo.DataSource
                     Brand = _Brands.Audi,
                     Colour= "red",
                     TimeWhenAddedToDatabase = DateTime.Now,
-                    APK = true
+                    APK = true,
+                    People = new List<Person>{ People[0], People[1]}
                 },
                 new Car()
                 {
@@ -100,7 +75,8 @@ namespace Demo.DataSource
                     Brand = _Brands.BMW,
                     Colour= "Blue",
                     TimeWhenAddedToDatabase = DateTime.Now,
-                    APK = false
+                    APK = false,
+                    People = new List<Person>{ People[0], People[1], People[2]}
                 },
                 new Car()
                 {
@@ -109,7 +85,7 @@ namespace Demo.DataSource
                     Brand = _Brands.Mini,
                     Colour= "red",
                     TimeWhenAddedToDatabase = DateTime.Now,
-                    APK = true
+                    APK = true,
                 },
                 new Car()
                 {
@@ -118,7 +94,7 @@ namespace Demo.DataSource
                     Brand = _Brands.Ford,
                     Colour= "Blue",
                     TimeWhenAddedToDatabase = DateTime.Now,
-                    APK = false
+                    APK = false,
                 },
             });
         }
