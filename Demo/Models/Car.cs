@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.OData.Builder;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 namespace Demo.Models
@@ -11,9 +12,12 @@ namespace Demo.Models
         public int ID { get; set; }
         public double AmountMade { get; set; }
         public Boolean APK { get; set; }
-        public String Colour { get; set; }
+        public String Name { get; set; }
         public DateTime TimeWhenAddedToDatabase { get; set; }
         public _Brands Brand { get; set; }
         public List<Person> People { get; set; }
+
+        [Singleton]
+        public Company Company { get; set; }
     }
 }

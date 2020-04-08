@@ -22,6 +22,8 @@ namespace Demo.DataSource
         }
         public List<Person> People { get; set; }
         public List<Car> Cars { get; set; }
+        public List<Company> Companies { get; set; }
+
 
         private DemoDataSources()
         {
@@ -33,6 +35,7 @@ namespace Demo.DataSource
         {
             this.People = new List<Person>();
             this.Cars = new List<Car>();
+            this.Companies = new List<Company>();
         }
 
         public void Initialize()
@@ -63,7 +66,7 @@ namespace Demo.DataSource
                     ID = 0,
                     AmountMade = 1,
                     Brand = _Brands.Audi,
-                    Colour= "red",
+                    Name= "A4",
                     TimeWhenAddedToDatabase = DateTime.Now,
                     APK = true,
                     People = new List<Person>{ People[0], People[1]}
@@ -73,7 +76,7 @@ namespace Demo.DataSource
                     ID = 1,
                     AmountMade = 1234234,
                     Brand = _Brands.BMW,
-                    Colour= "Blue",
+                    Name= "I3",
                     TimeWhenAddedToDatabase = DateTime.Now,
                     APK = false,
                     People = new List<Person>{ People[0], People[1], People[2]}
@@ -83,7 +86,7 @@ namespace Demo.DataSource
                     ID = 2,
                     AmountMade = 353451,
                     Brand = _Brands.Mini,
-                    Colour= "red",
+                    Name= "Clubman",
                     TimeWhenAddedToDatabase = DateTime.Now,
                     APK = true,
                 },
@@ -92,9 +95,25 @@ namespace Demo.DataSource
                     ID = 3,
                     AmountMade = 1678678,
                     Brand = _Brands.Ford,
-                    Colour= "Blue",
+                    Name= "Focus",
                     TimeWhenAddedToDatabase = DateTime.Now,
                     APK = false,
+                },
+            });
+
+            this.Companies.AddRange(new List<Company>()
+            {
+                new Company()
+                {
+                    ID = 0,
+                    Name = "Owners",
+                    //OwnedCars =  new List<Car>{ Cars[1]},
+                    Owners = new List<Person>{ People[1]}
+                },
+                new Company()
+                {
+                    ID = 1,
+                    Name = "Owners2",
                 },
             });
         }
