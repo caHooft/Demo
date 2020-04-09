@@ -22,7 +22,7 @@ namespace Demo.DataSource
         }
         public List<Person> People { get; set; }
         public List<Car> Cars { get; set; }
-        public List<Company> Companies { get; set; }
+        //public List<Company> Companies { get; set; }
 
 
         private DemoDataSources()
@@ -35,7 +35,7 @@ namespace Demo.DataSource
         {
             this.People = new List<Person>();
             this.Cars = new List<Car>();
-            this.Companies = new List<Company>();
+            //this.Companies = new List<Company>();
         }
 
         public void Initialize()
@@ -101,21 +101,21 @@ namespace Demo.DataSource
                 },
             });
 
-            this.Companies.AddRange(new List<Company>()
-            {
-                new Company()
-                {
-                    ID = 0,
-                    Name = "Owners",
-                    //OwnedCars =  new List<Car>{ Cars[1]},
-                    Owners = new List<Person>{ People[1]}
-                },
-                new Company()
-                {
-                    ID = 1,
-                    Name = "Owners2",
-                },
-            });
+            //this.Companies.AddRange(new List<Company>()
+            //{
+            //    new Company()
+            //    {
+            //        ID = 0,
+            //        Name = "Owners",
+            //        //OwnedCars =  new List<Car>{ Cars[1]},
+            //        Owners = new List<Person>{ People[1]}
+            //    },
+            //    new Company()
+            //    {
+            //        ID = 1,
+            //        Name = "Owners2",
+            //    },
+            //});
         }
     }
 }

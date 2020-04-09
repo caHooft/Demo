@@ -20,19 +20,18 @@ namespace Demo
         public static IEdmModel GetEdmModel ()
         {
             var builder = new ODataModelBuilder();
-            //builder.EntitySet<Person>("People");
             //builder.Singleton<Company>("Companies");
             //builder.Namespace = typeof(Company).Namespace;
             builder.ContainerName = "DefaultContainer";
 
-           // EntityTypeConfiguration Companies = builder.AddEntityType(typeof(Company));
+            //Singleton stuff
+
+            //EntityTypeConfiguration Companies = builder.AddEntityType(typeof(Company));
             //EntitySetConfiguration<Company> employeesConfiguration = builder.EntitySet<Company>("Companies");
             //employeesConfiguration.HasSingletonBinding(c => c.Owners, "Owners");
             //employeesConfiguration.HasSingletonBinding(c => c.OwnedCars, "Cars");
 
             //Companies.HasKey(typeof(Company).GetProperty("ID"));
-
-
             //EntityTypeConfiguration companyConfig = builder.AddSingleton<Company>("Umbrella");
             //EntityTypeConfiguration companyConfig = builder.AddEntityType(typeof(Company));
             //companyConfig.HasKey(typeof(Company).GetProperty("ID"));

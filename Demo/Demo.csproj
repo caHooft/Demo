@@ -149,7 +149,9 @@
     </Compile>
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\CustomerOrders.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\Supplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

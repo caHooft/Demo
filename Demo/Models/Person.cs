@@ -10,9 +10,16 @@ namespace Demo.Models
 
         [Required]
         public String Name { get; set; }
+        
+        [Contained]
+        public IList<CustomerOrders> OrdersShipped { get; set; }
+
+        [Contained]
+        public CustomerOrders CurrentOrder { get; set; }
         //public List<Car> Cars { get; set; }
 
-        [Singleton]
-        public Company Company { get; set; }
+
+        //[Singleton]
+        //public Company Company { get; set; }
     }
 }

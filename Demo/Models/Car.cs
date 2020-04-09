@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Demo.Models
 {
     public enum _Brands { Tesla, Ferrari, Mini, Porsche, Volkswagen, Nissan, Audi, Ford, Honda, BMW, Mercedes, Toyota };
@@ -17,7 +19,11 @@ namespace Demo.Models
         public _Brands Brand { get; set; }
         public List<Person> People { get; set; }
 
-        [Singleton]
-        public Company Company { get; set; }
+        //[Singleton]
+        //public Company Company { get; set; }
+
+        [ForeignKey("Supplier")]
+        public int? SupplierId { get; set; }
+        public virtual Supplier Supplier { get; set; }
     }
 }
