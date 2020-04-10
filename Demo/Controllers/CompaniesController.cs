@@ -10,11 +10,11 @@ using Demo.Models;
 
 namespace Demo.Controllers
 {
-    public class CompaniesController : ODataController
-    {
-        public IHttpActionResult Get()
-        {
-            return Ok(DemoDataSources.Instance.Companies.AsQueryable());
-        }
-    }
+    //public class CompaniesController : ODataController
+    //{
+    //    public IHttpActionResult Get()
+    //    {
+    //        return Ok(DemoDataSources.Instance.Companies.AsQueryable());
+    //    }
+    //}
 }

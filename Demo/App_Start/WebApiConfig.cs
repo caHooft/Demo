@@ -5,16 +5,33 @@ using System.Web.Http;
 using Microsoft.AspNet.OData.Batch;
 using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Extensions;
+using System.Net.Http.Formatting;
 
 namespace Demo
 {
     public static class WebApiConfig
     {
+        //public static void Register(HttpConfiguration config)
+        //{
+        //    DataSource.DemoDataSources.Instance.Initialize();
+        //    config.MapODataServiceRoute("odata", "odata", GetEdmModel(), new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer));
+        //    config.EnsureInitialized();
+        //}
+
         public static void Register(HttpConfiguration config)
         {
-            DataSource.DemoDataSources.Instance.Initialize();
+            ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+            var OrderType = builder.EntityType<CustomerOrders>();
+            builder.EntitySet<Person>("People");
+            builder.Namespace = typeof(Person).Namespace;
+
+            config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
+
             config.MapODataServiceRoute("odata", "odata", GetEdmModel(), new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer));
-            config.EnsureInitialized();
+            //config.MapODataServiceRoute(routeName: "OData", routePrefix: "odata", model: builder.GetEdmModel());
+
+            config.Formatters.Clear();                             //Remove all other formatters
+            config.Formatters.Add(new JsonMediaTypeFormatter());   //Enable JSON in the web service
         }
 
         public static IEdmModel GetEdmModel ()

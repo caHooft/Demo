@@ -6,7 +6,7 @@ namespace Demo.Models
 {
     public class Person
     {
-        public String ID { get; set; }
+        public int ID { get; set; }
 
         [Required]
         public String Name { get; set; }

@@ -44,17 +44,17 @@ namespace Demo.DataSource
             {
                 new Person()
                 {
-                    ID = "001",
+                    ID = 001,
                     Name = "Angel",
                 },
                 new Person()
                 {
-                    ID = "002",
+                    ID = 002,
                     Name = "Clyde",
                 },
                 new Person()
                 {
-                    ID = "003",
+                    ID = 003,
                     Name = "Elaine",
                    }
             });

@@ -9,7 +9,7 @@ namespace Demo.Models
     public class CustomerOrders
     {
         public int OrderID { get; set; }
-        public string ShippingAdress { get; set; }
+        public string ShippingAddress { get; set; }
 
     }
 }
