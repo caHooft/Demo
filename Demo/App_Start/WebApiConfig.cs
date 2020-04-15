@@ -27,8 +27,8 @@ namespace Demo
 
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
 
-            config.MapODataServiceRoute("odata", "odata", GetEdmModel(), new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer));
-            //config.MapODataServiceRoute(routeName: "OData", routePrefix: "odata", model: builder.GetEdmModel());
+            //config.MapODataServiceRoute("odata", "odata", GetEdmModel(), new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer));
+            config.MapODataServiceRoute(routeName: "OData", routePrefix: "odata", model: builder.GetEdmModel());
 
             config.Formatters.Clear();                             //Remove all other formatters
             config.Formatters.Add(new JsonMediaTypeFormatter());   //Enable JSON in the web service

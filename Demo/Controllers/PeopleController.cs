@@ -41,7 +41,7 @@ namespace Demo.Controllers
         }
 
         [EnableQuery]
-        [ODataRoute("people({ID})/Order({OrderID})")]
+        [ODataRoute("people({ID})/OrdersShipped({OrderID})")]
         //sShipped
         //"url": "http://localhost:52412/odata/people"
         public IHttpActionResult GetSingleOrderShipped(int Id, int OrderId)
