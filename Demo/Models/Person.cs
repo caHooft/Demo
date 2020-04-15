@@ -12,14 +12,20 @@ namespace Demo.Models
         public String Name { get; set; }
         
         [Contained]
-        public IList<CustomerOrders> OrdersShipped { get; set; }
+        public IList<Order> OrdersShipped { get; set; }
 
         [Contained]
-        public CustomerOrders CurrentOrder { get; set; }
+        public Order CurrentOrder { get; set; }
         //public List<Car> Cars { get; set; }
-
 
         //[Singleton]
         //public Company Company { get; set; }
+
+        public class Order
+        {
+            public int OrderID { get; set; }
+            public string ShippingAddress { get; set; }
+
+        }
     }
 }

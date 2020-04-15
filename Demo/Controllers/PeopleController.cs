@@ -8,6 +8,7 @@ using System.Web.Http;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNet.OData.Routing;
+using static Demo.Models.Person;
 
 namespace Demo.Controllers
 {
@@ -21,7 +22,8 @@ namespace Demo.Controllers
         {
             if (_People == null)
             {
-                _People = DemoDataSources.Instance.People.ToList();
+                //_People = DemoDataSources.Instance.People.ToList();
+                _People = GetDemoData();
             }
         }
 
@@ -39,7 +41,9 @@ namespace Demo.Controllers
         }
 
         [EnableQuery]
-        [ODataRoute("People({Id})/OrdersShipped({OrderId})")]
+        [ODataRoute("people({ID})/Order({OrderID})")]
+        //sShipped
+        //"url": "http://localhost:52412/odata/people"
         public IHttpActionResult GetSingleOrderShipped(int Id, int OrderId)
         {
             var OrdersShipped = _People.Single(a => a.ID == Id).OrdersShipped;
@@ -56,20 +60,20 @@ namespace Demo.Controllers
                    ID = 100,
                    Name="Sam Nasr",
 
-                   CurrentOrder = new CustomerOrders()
+                   CurrentOrder = new Order()
                    {
                        OrderID = 103,
                        ShippingAddress = "1234 Walnut Street, Cleveland, Ohio 44101",
                    },
 
-                   OrdersShipped = new List<CustomerOrders>()
+                   OrdersShipped = new List<Order>()
                     {
-                        new CustomerOrders()
+                        new Order()
                         {
                             OrderID = 101,
                             ShippingAddress = "2121 E.9th Street, Cleveland, Ohio 44103",
                         },
-                        new CustomerOrders()
+                        new Order()
                         {
                             OrderID = 102,
                             ShippingAddress = "3221 W.6th Street, Cleveland, Ohio 44104",
@@ -83,20 +87,20 @@ namespace Demo.Controllers
                    ID = 200,
                    Name="James Williams",
 
-                   CurrentOrder = new CustomerOrders()
+                   CurrentOrder = new Order()
                    {
                        OrderID = 203,
                        ShippingAddress = "8901 Chestnut Street, Cleveland, Ohio 44101",
                    },
 
-                   OrdersShipped = new List<CustomerOrders>()
+                   OrdersShipped = new List<Order>()
                     {
-                        new CustomerOrders()
+                        new Order()
                         {
                             OrderID = 201,
                             ShippingAddress = "5477 E.49th Street, Cleveland, Ohio 44103",
                         },
-                        new CustomerOrders()
+                        new Order()
                         {
                             OrderID = 202,
                             ShippingAddress = "7181 W.6th Street, Cleveland, Ohio 44104",

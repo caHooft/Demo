@@ -21,7 +21,7 @@ namespace Demo
         public static void Register(HttpConfiguration config)
         {
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-            var OrderType = builder.EntityType<CustomerOrders>();
+            var OrderType = builder.EntityType<Person.Order>();
             builder.EntitySet<Person>("People");
             builder.Namespace = typeof(Person).Namespace;
 
