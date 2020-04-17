@@ -8,6 +8,8 @@ namespace Demo.Models
     {
         public int ID { get; set; }
 
+        public string OwnedCar { get; set; }
+
         [Required]
         public String Name { get; set; }
         

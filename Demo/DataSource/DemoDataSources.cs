@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Demo.Models;
+using static Demo.Models.Person;
 
 namespace Demo.DataSource
 {
@@ -40,25 +41,6 @@ namespace Demo.DataSource
 
         public void Initialize()
         {
-            this.People.AddRange(new List<Person>()
-            {
-                new Person()
-                {
-                    ID = 001,
-                    Name = "Angel",
-                },
-                new Person()
-                {
-                    ID = 002,
-                    Name = "Clyde",
-                },
-                new Person()
-                {
-                    ID = 003,
-                    Name = "Elaine",
-                   }
-            });
-
             this.Cars.AddRange(new List<Car>
             {
                 new Car()
@@ -69,7 +51,7 @@ namespace Demo.DataSource
                     Name= "A4",
                     TimeWhenAddedToDatabase = DateTime.Now,
                     APK = true,
-                    People = new List<Person>{ People[0], People[1]}
+                    //People = new List<Person>{ People[0], People[1]}
                 },
                 new Car()
                 {
@@ -79,7 +61,7 @@ namespace Demo.DataSource
                     Name= "I3",
                     TimeWhenAddedToDatabase = DateTime.Now,
                     APK = false,
-                    People = new List<Person>{ People[0], People[1], People[2]}
+                    //People = new List<Person>{ People[0], People[1], People[2]}
                 },
                 new Car()
                 {
@@ -99,6 +81,65 @@ namespace Demo.DataSource
                     TimeWhenAddedToDatabase = DateTime.Now,
                     APK = false,
                 },
+            });
+
+            this.People.AddRange(new List<Person>()
+            {
+                new Person()
+                {
+                   ID = 100,
+                   Name="Sam Nasr",
+                   OwnedCar = Cars[0].Name,
+
+                   CurrentOrder = new Order()
+                   {
+                       OrderID = 103,
+                       ShippingAddress = "1234 Walnut Street, Cleveland, Ohio 44101",
+                   },
+
+                   OrdersShipped = new List<Order>()
+                    {
+                        new Order()
+                        {
+                            OrderID = 101,
+                            ShippingAddress = "2121 E.9th Street, Cleveland, Ohio 44103",
+                        },
+                        new Order()
+                        {
+                            OrderID = 102,
+                            ShippingAddress = "3221 W.6th Street, Cleveland, Ohio 44104",
+                        },
+                    },
+                },
+
+              new Person()
+                {
+                   ID = 200,
+                   Name="James Williams",
+                   OwnedCar = Cars[1].Name,
+
+                   CurrentOrder = new Order()
+                   {
+                       OrderID = 203,
+                       ShippingAddress = "8901 Chestnut Street, Cleveland, Ohio 44101",
+                       
+                   },
+
+                   OrdersShipped = new List<Order>()
+                    {
+                        new Order()
+                        {
+                            OrderID = 201,
+                            ShippingAddress = "5477 E.49th Street, Cleveland, Ohio 44103",
+                        },
+                        new Order()
+                        {
+                            OrderID = 202,
+                            ShippingAddress = "7181 W.6th Street, Cleveland, Ohio 44104",
+                        },
+                    },
+                }
+
             });
 
             //this.Companies.AddRange(new List<Company>()

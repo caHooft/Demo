@@ -23,7 +23,7 @@ namespace Demo.Controllers
             if (_People == null)
             {
                 //_People = DemoDataSources.Instance.People.ToList();
-                _People = GetDemoData();
+                _People = Demo.DataSource.DemoDataSources.Instance.People.ToList();
             }
         }
 
@@ -51,66 +51,66 @@ namespace Demo.Controllers
             return Ok(OrderShipped);
         }
 
-        private static IList<Person> GetDemoData()
-        {
-            var Customers = new List<Person>()
-            {
-                new Person()
-                {
-                   ID = 100,
-                   Name="Sam Nasr",
+        //private static IList<Person> GetDemoData()
+        //{
+        //    var Customers = new List<Person>()
+        //    {
+        //        new Person()
+        //        {
+        //           ID = 100,
+        //           Name="Sam Nasr",
 
-                   CurrentOrder = new Order()
-                   {
-                       OrderID = 103,
-                       ShippingAddress = "1234 Walnut Street, Cleveland, Ohio 44101",
-                   },
+        //           CurrentOrder = new Order()
+        //           {
+        //               OrderID = 103,
+        //               ShippingAddress = "1234 Walnut Street, Cleveland, Ohio 44101",
+        //           },
 
-                   OrdersShipped = new List<Order>()
-                    {
-                        new Order()
-                        {
-                            OrderID = 101,
-                            ShippingAddress = "2121 E.9th Street, Cleveland, Ohio 44103",
-                        },
-                        new Order()
-                        {
-                            OrderID = 102,
-                            ShippingAddress = "3221 W.6th Street, Cleveland, Ohio 44104",
-                        },
-                    },
-                },
+        //           OrdersShipped = new List<Order>()
+        //            {
+        //                new Order()
+        //                {
+        //                    OrderID = 101,
+        //                    ShippingAddress = "2121 E.9th Street, Cleveland, Ohio 44103",
+        //                },
+        //                new Order()
+        //                {
+        //                    OrderID = 102,
+        //                    ShippingAddress = "3221 W.6th Street, Cleveland, Ohio 44104",
+        //                },
+        //            },
+        //        },
 
 
-              new Person()
-                {
-                   ID = 200,
-                   Name="James Williams",
+        //      new Person()
+        //        {
+        //           ID = 200,
+        //           Name="James Williams",
 
-                   CurrentOrder = new Order()
-                   {
-                       OrderID = 203,
-                       ShippingAddress = "8901 Chestnut Street, Cleveland, Ohio 44101",
-                   },
+        //           CurrentOrder = new Order()
+        //           {
+        //               OrderID = 203,
+        //               ShippingAddress = "8901 Chestnut Street, Cleveland, Ohio 44101",
+        //           },
 
-                   OrdersShipped = new List<Order>()
-                    {
-                        new Order()
-                        {
-                            OrderID = 201,
-                            ShippingAddress = "5477 E.49th Street, Cleveland, Ohio 44103",
-                        },
-                        new Order()
-                        {
-                            OrderID = 202,
-                            ShippingAddress = "7181 W.6th Street, Cleveland, Ohio 44104",
-                        },
-                    },
-                }
+        //           OrdersShipped = new List<Order>()
+        //            {
+        //                new Order()
+        //                {
+        //                    OrderID = 201,
+        //                    ShippingAddress = "5477 E.49th Street, Cleveland, Ohio 44103",
+        //                },
+        //                new Order()
+        //                {
+        //                    OrderID = 202,
+        //                    ShippingAddress = "7181 W.6th Street, Cleveland, Ohio 44104",
+        //                },
+        //            },
+        //        }
 
-            };
-            return Customers;
-        }
+        //    };
+        //    return Customers;
+        //}
 
     }
 }

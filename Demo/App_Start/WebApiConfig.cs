@@ -23,6 +23,7 @@ namespace Demo
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
             var OrderType = builder.EntityType<Person.Order>();
             builder.EntitySet<Person>("People");
+            builder.EntitySet<Car>("Cars");
             builder.Namespace = typeof(Person).Namespace;
 
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
