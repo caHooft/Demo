@@ -20,16 +20,10 @@ namespace Demo
 
         public static void Register(HttpConfiguration config)
         {
-            ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-            var OrderType = builder.EntityType<Person.Order>();
-            builder.EntitySet<Person>("People");
-            builder.EntitySet<Car>("Cars");
-            builder.Namespace = typeof(Person).Namespace;
+            //DataSource.DemoDataSources.Instance.Initialize();
 
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
-
-            //config.MapODataServiceRoute("odata", "odata", GetEdmModel(), new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer));
-            config.MapODataServiceRoute(routeName: "OData", routePrefix: "odata", model: builder.GetEdmModel());
+            config.MapODataServiceRoute("OData", "odata", GetEdmModel(), new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer));
 
             config.Formatters.Clear();                             //Remove all other formatters
             config.Formatters.Add(new JsonMediaTypeFormatter());   //Enable JSON in the web service
@@ -37,9 +31,18 @@ namespace Demo
 
         public static IEdmModel GetEdmModel ()
         {
-            var builder = new ODataModelBuilder();
+            ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+            var OrderType = builder.EntityType<Person.Order>();
+            builder.EntitySet<Person>("People");
+            builder.EntitySet<Car>("Cars");
+            builder.Namespace = typeof(Person).Namespace;
+
+            //var builder = new ODataModelBuilder();
             //builder.Singleton<Company>("Companies");
             //builder.Namespace = typeof(Company).Namespace;
+            //builder.Namespace = typeof(Person).Namespace;
+
+
             builder.ContainerName = "DefaultContainer";
 
             //Singleton stuff
