@@ -32,16 +32,16 @@ namespace Demo
         public static IEdmModel GetEdmModel ()
         {
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-            var OrderType = builder.EntityType<Person.Order>();
-            builder.EntitySet<Person>("People");
-            builder.EntitySet<Car>("Cars");
+            //var builder = new ODataModelBuilder();
+            //var OrderType = builder.EntityType<Person.Order>();
+            //builder.EntitySet<Person>("People");
+            //builder.EntitySet<Car>("Cars");
             builder.Namespace = typeof(Person).Namespace;
 
             //var builder = new ODataModelBuilder();
             //builder.Singleton<Company>("Companies");
             //builder.Namespace = typeof(Company).Namespace;
             //builder.Namespace = typeof(Person).Namespace;
-
 
             builder.ContainerName = "DefaultContainer";
 
@@ -61,6 +61,7 @@ namespace Demo
             EntityTypeConfiguration personConfig = builder.AddEntityType(typeof(Person));
             personConfig.HasKey(typeof(Person).GetProperty("ID"));
             personConfig.AddProperty(typeof(Person).GetProperty("Name"));
+            personConfig.AddProperty(typeof(Person).GetProperty("OwnedCar"));
             //employeesConfiguration.HasSingletonBinding(c => c.Company, "Umbrella");
 
             EntityTypeConfiguration carConfig = builder.AddEntityType(typeof(Car));
