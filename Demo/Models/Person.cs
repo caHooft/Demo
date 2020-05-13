@@ -13,21 +13,28 @@ namespace Demo.Models
         [Required]
         public String Name { get; set; }
         
-        [Contained]
+        //[Contained]
         public IList<Order> OrdersShipped { get; set; }
 
-        [Contained]
+        //[Contained]
         public Order CurrentOrder { get; set; }
         //public List<Car> Cars { get; set; }
 
         //[Singleton]
         //public Company Company { get; set; }
 
-        public class Order
-        {
-            public int OrderID { get; set; }
-            public string ShippingAddress { get; set; }
+        //public class Order
+        //{
+        //    public int OrderID { get; set; }
+        //    public string ShippingAddress { get; set; }
 
-        }
+        //}
+    }
+
+    public class Order
+    {
+        public int OrderID { get; set; }
+        public string ShippingAddress { get; set; }
+
     }
 }

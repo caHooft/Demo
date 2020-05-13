@@ -24,6 +24,6 @@ namespace Demo.Models
 
         [ForeignKey("Supplier")]
         public int? SupplierId { get; set; }
-        public virtual Supplier Supplier { get; set; }
+        public Supplier Supplier { get; set; }
     }
 }
