@@ -14,11 +14,21 @@ namespace Demo.Controllers
     public class CarsController : ODataController
     {
         public static object RouteData { get; internal set; }
-        
+
+        public IHttpActionResult Get(int key)
+        {
+            return Ok(DemoDataSources.Instance.Cars.First(p => p.ID == key));
+        }
+
         public IHttpActionResult Get()
         {
             return Ok(DemoDataSources.Instance.Cars.AsQueryable());
         }
+
+        //GET /odata/Products(1)/Supplier
+        //public Supplier GetSupplierFromProduct(int key)
+
+        //public People 
 
         public HttpResponseMessage Post(Car car)
         {

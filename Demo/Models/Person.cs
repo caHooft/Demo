@@ -8,16 +8,18 @@ namespace Demo.Models
     {
         public int ID { get; set; }
 
-        public string OwnedCar { get; set; }
+        //public string OwnedCar { get; set; }
+
+        public Car Car { get; set; }
 
         [Required]
         public String Name { get; set; }
-        
-        //[Contained]
-        public IList<Order> OrdersShipped { get; set; }
 
         //[Contained]
-        public Order CurrentOrder { get; set; }
+        //public IList<Order> OrdersShipped { get; set; }
+
+        //[Contained]
+        //public Order CurrentOrder { get; set; }
         //public List<Car> Cars { get; set; }
 
         //[Singleton]

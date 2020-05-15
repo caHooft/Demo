@@ -6,6 +6,8 @@ using Microsoft.AspNet.OData.Batch;
 using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Extensions;
 using System.Net.Http.Formatting;
+using Microsoft.AspNet.OData.Routing;
+using Microsoft.AspNet.OData.Routing.Conventions;
 
 namespace Demo
 {
@@ -22,30 +24,37 @@ namespace Demo
         {
             //DataSource.DemoDataSources.Instance.Initialize();
 
-            config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
-            config.MapODataServiceRoute("OData", "odata", GetEdmModel(), new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer));
+            //config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
+            var bh = new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer);
+            //config.MapODataServiceRoute("OData", "odata", GetEdmModel());
 
-            config.Formatters.Clear();                             //Remove all other formatters
-            config.Formatters.Add(new JsonMediaTypeFormatter());   //Enable JSON in the web service
+           config.MapODataServiceRoute("OData", "odata", GetEdmModel(), new DefaultODataPathHandler(),
+           ODataRoutingConventions.CreateDefaultWithAttributeRouting("OData", config), bh);
+
+            //config.Formatters.Clear();                             //Remove all other formatters
+            //config.Formatters.Add(new JsonMediaTypeFormatter());   //Enable JSON in the web service
         }
 
         public static IEdmModel GetEdmModel ()
         {
-            ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-            //var builder = new ODataModelBuilder();
-            //var OrderType = builder.EntityType<Person.Order>();
+            //ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+            var builder = new ODataModelBuilder();
+            //var OrderType = builder.EntityType<Order>();
+            //builder.Function("GetName")
+            //    .Returns<string>()
+            //    .Parameter<int>("key");
             //builder.EntitySet<Person>("People");
             //builder.EntitySet<Car>("Cars");
             builder.Namespace = typeof(Person).Namespace;
+
+            builder.ContainerName = "DefaultContainer";
+
+            //Singleton stuff
 
             //var builder = new ODataModelBuilder();
             //builder.Singleton<Company>("Companies");
             //builder.Namespace = typeof(Company).Namespace;
             //builder.Namespace = typeof(Person).Namespace;
-
-            builder.ContainerName = "DefaultContainer";
-
-            //Singleton stuff
 
             //EntityTypeConfiguration Companies = builder.AddEntityType(typeof(Company));
             //EntitySetConfiguration<Company> employeesConfiguration = builder.EntitySet<Company>("Companies");
@@ -61,7 +70,9 @@ namespace Demo
             EntityTypeConfiguration personConfig = builder.AddEntityType(typeof(Person));
             personConfig.HasKey(typeof(Person).GetProperty("ID"));
             personConfig.AddProperty(typeof(Person).GetProperty("Name"));
-            personConfig.AddProperty(typeof(Person).GetProperty("OwnedCar"));
+            personConfig.AddNavigationProperty(typeof(Person).GetProperty("Car"), EdmMultiplicity.One);
+            //personConfig.AddProperty(typeof(Person).GetProperty("OwnedCar"));
+            //personConfig.AddNavigationProperty(typeof(Person).GetProperty("OwnedCars"), EdmMultiplicity.One);
             //employeesConfiguration.HasSingletonBinding(c => c.Company, "Umbrella");
 
             EntityTypeConfiguration carConfig = builder.AddEntityType(typeof(Car));
@@ -72,6 +83,9 @@ namespace Demo
             carConfig.AddProperty(typeof(Car).GetProperty("Name"));
             carConfig.AddProperty(typeof(Car).GetProperty("TimeWhenAddedToDatabase"));
             carConfig.AddEnumProperty(typeof(Car).GetProperty("Brand"));
+            //carConfig.AddCollectionProperty(typeof(Car).GetProperty("People"));
+            var np = carConfig.AddNavigationProperty(typeof(Car).GetProperty("People"),EdmMultiplicity.Many);
+            //np.
             
             //Doesnt get through build: The property 'Name' does not belong to the type 'Demo.Models.Car'.
             //carConfig.AddProperty(typeof(Person).GetProperty("Name"));

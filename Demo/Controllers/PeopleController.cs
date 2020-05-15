@@ -16,6 +16,19 @@ namespace Demo.Controllers
     //[EnableQuery(AllowedQueryOptions = AllowedQueryOptions.All)]
     public class PeopleController : ODataController
     {
+        //guy on the internet claims this should do something
+        //public IHttpActionResult GetClientModel([FromODataUri] int key)
+        //{
+        //    return Ok(_clientsRepository.GetClients(key).Single());
+        //}
+
+        //public IHttpActionResult GetClientModel([FromODataUri] int key)
+        //{
+        //    return Ok(_People..Single());
+        //}
+
+        
+
         private static IList<Person> _People = null;
 
         public PeopleController()
@@ -27,29 +40,46 @@ namespace Demo.Controllers
             }
         }
 
+        public IHttpActionResult Get(int key)
+        {
+            //return Ok(DemoDataSources.Instance.People.AsQueryable());
+            return Ok(_People.AsQueryable().First(p => p.ID==key));
+        }
+
         public IHttpActionResult Get()
         {
             //return Ok(DemoDataSources.Instance.People.AsQueryable());
             return Ok(_People.AsQueryable());
         }
 
-        [EnableQuery]
-        public IHttpActionResult GetOrdersShipped(int key)
+        public IHttpActionResult GetCar()
         {
-            var OrdersShipped = _People.Single(a => a.ID == key).OrdersShipped;
-            return Ok(OrdersShipped);
+            //return Ok(DemoDataSources.Instance.People.AsQueryable());
+            return Ok(DemoDataSources.Instance.Cars[0]);
         }
 
-        [EnableQuery]
-        [ODataRoute("people({ID})/OrdersShipped({OrderID})")]
-        //sShipped
-        //"url": "http://localhost:52412/odata/people"
-        public IHttpActionResult GetSingleOrderShipped(int Id, int OrderId)
+        public IHttpActionResult GetCarFromPeople(int key)
         {
-            var OrdersShipped = _People.Single(a => a.ID == Id).OrdersShipped;
-            var OrderShipped = OrdersShipped.Single(pi => pi.OrderID == OrderId);
-            return Ok(OrderShipped);
+            return Ok(DemoDataSources.Instance.Cars[0]);
         }
+
+        //[EnableQuery]
+        //public IHttpActionResult GetOrdersShipped(int key)
+        //{
+        //    var OrdersShipped = _People.Single(a => a.ID == key).OrdersShipped;
+        //    return Ok(OrdersShipped);
+        //}
+
+        //[EnableQuery]
+        //[ODataRoute("people({ID})/OrdersShipped({OrderID})")]
+        ////sShipped
+        ////"url": "http://localhost:52412/odata/people"
+        //public IHttpActionResult GetSingleOrderShipped(int Id, int OrderId)
+        //{
+        //    var OrdersShipped = _People.Single(a => a.ID == Id).OrdersShipped;
+        //    var OrderShipped = OrdersShipped.Single(pi => pi.OrderID == OrderId);
+        //    return Ok(OrderShipped);
+        //}
 
         //private static IList<Person> GetDemoData()
         //{

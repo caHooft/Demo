@@ -89,55 +89,57 @@ namespace Demo.DataSource
                 {
                    ID = 100,
                    Name="Sam Nasr",
-                   OwnedCar = Cars[0].Name,
+                   //OwnedCar = Cars[0].Name,
+                   Car = Cars[0],
 
-                   CurrentOrder = new Order()
-                   {
-                       OrderID = 103,
-                       ShippingAddress = "1234 Walnut Street, Cleveland, Ohio 44101",
-                   },
+                   //CurrentOrder = new Order()
+                   //{
+                   //    OrderID = 103,
+                   //    ShippingAddress = "1234 Walnut Street, Cleveland, Ohio 44101",
+                   //},
 
-                   OrdersShipped = new List<Order>()
-                    {
-                        new Order()
-                        {
-                            OrderID = 101,
-                            ShippingAddress = "2121 E.9th Street, Cleveland, Ohio 44103",
-                        },
-                        new Order()
-                        {
-                            OrderID = 102,
-                            ShippingAddress = "3221 W.6th Street, Cleveland, Ohio 44104",
-                        },
-                    },
+                   //OrdersShipped = new List<Order>()
+                   // {
+                   //     new Order()
+                   //     {
+                   //         OrderID = 101,
+                   //         ShippingAddress = "2121 E.9th Street, Cleveland, Ohio 44103",
+                   //     },
+                   //     new Order()
+                   //     {
+                   //         OrderID = 102,
+                   //         ShippingAddress = "3221 W.6th Street, Cleveland, Ohio 44104",
+                   //     },
+                   // },
                 },
 
               new Person()
                 {
                    ID = 200,
                    Name="James Williams",
-                   OwnedCar = Cars[1].Name,
+                   //OwnedCar = Cars[1].Name,
+                   Car = Cars[1],
 
-                   CurrentOrder = new Order()
-                   {
-                       OrderID = 203,
-                       ShippingAddress = "8901 Chestnut Street, Cleveland, Ohio 44101",
-                       
-                   },
+                   //CurrentOrder = new Order()
+                   //{
+                   //    OrderID = 203,
+                   //    ShippingAddress = "8901 Chestnut Street, Cleveland, Ohio 44101",
 
-                   OrdersShipped = new List<Order>()
-                    {
-                        new Order()
-                        {
-                            OrderID = 201,
-                            ShippingAddress = "5477 E.49th Street, Cleveland, Ohio 44103",
-                        },
-                        new Order()
-                        {
-                            OrderID = 202,
-                            ShippingAddress = "7181 W.6th Street, Cleveland, Ohio 44104",
-                        },
-                    },
+                   //},
+
+                   //OrdersShipped = new List<Order>()
+                   // {
+                   //     new Order()
+                   //     {
+                   //         OrderID = 201,
+                   //         ShippingAddress = "5477 E.49th Street, Cleveland, Ohio 44103",
+                   //     },
+                   //     new Order()
+                   //     {
+                   //         OrderID = 202,
+                   //         ShippingAddress = "7181 W.6th Street, Cleveland, Ohio 44104",
+                   //     },
+                   // },
                 }
 
             });

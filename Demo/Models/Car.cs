@@ -22,8 +22,8 @@ namespace Demo.Models
         //[Singleton]
         //public Company Company { get; set; }
 
-        [ForeignKey("Supplier")]
-        public int? SupplierId { get; set; }
-        public Supplier Supplier { get; set; }
+        //[ForeignKey("Supplier")]
+        //public int? SupplierId { get; set; }
+        //public Supplier Supplier { get; set; }
     }
 }
