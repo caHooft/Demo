@@ -51,7 +51,6 @@ namespace Demo.DataSource
                     Name= "A4",
                     TimeWhenAddedToDatabase = DateTime.Now,
                     APK = true,
-                    //People = new List<Person>{ People[0], People[1]}
                 },
                 new Car()
                 {
@@ -61,7 +60,6 @@ namespace Demo.DataSource
                     Name= "I3",
                     TimeWhenAddedToDatabase = DateTime.Now,
                     APK = false,
-                    //People = new List<Person>{ People[0], People[1], People[2]}
                 },
                 new Car()
                 {
@@ -89,7 +87,6 @@ namespace Demo.DataSource
                 {
                    ID = 100,
                    Name="Sam Nasr",
-                   //OwnedCar = Cars[0].Name,
                    Car = Cars[0],
 
                    //CurrentOrder = new Order()
@@ -117,7 +114,6 @@ namespace Demo.DataSource
                 {
                    ID = 200,
                    Name="James Williams",
-                   //OwnedCar = Cars[1].Name,
                    Car = Cars[1],
 
                    //CurrentOrder = new Order()
@@ -144,6 +140,10 @@ namespace Demo.DataSource
 
             });
 
+            Cars[0].People = new List<Person> { };
+            Cars[1].People = new List<Person> { People[0] };
+            Cars[2].People = new List<Person> { People[1] };
+            Cars[3].People = new List<Person> { People[0], People[1] };
             //this.Companies.AddRange(new List<Company>()
             //{
             //    new Company()

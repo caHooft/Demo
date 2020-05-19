@@ -25,78 +25,43 @@ namespace Demo
             //DataSource.DemoDataSources.Instance.Initialize();
 
             //config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
-            var bh = new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer);
+            //var bh = new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer);
             //config.MapODataServiceRoute("OData", "odata", GetEdmModel());
+            //config.MapODataServiceRoute("OData", "odata", GetEdmModel(), new DefaultODataPathHandler(),
+            //ODataRoutingConventions.CreateDefaultWithAttributeRouting("OData", config), bh);
 
-           config.MapODataServiceRoute("OData", "odata", GetEdmModel(), new DefaultODataPathHandler(),
-           ODataRoutingConventions.CreateDefaultWithAttributeRouting("OData", config), bh);
+            var model = GetEdmModel();
+            var pathHandler = new DefaultODataPathHandler();
+            var routingConvention = ODataRoutingConventions.CreateDefaultWithAttributeRouting("OData", config);
+            var batchHandler = new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer);
 
-            //config.Formatters.Clear();                             //Remove all other formatters
-            //config.Formatters.Add(new JsonMediaTypeFormatter());   //Enable JSON in the web service
+            config.MapODataServiceRoute("OData", "odata", model, batchHandler);
+
+            config.Formatters.Clear();                             //Remove all other formatters
+            config.Formatters.Add(new JsonMediaTypeFormatter());   //Enable JSON in the web service
+            config.EnsureInitialized();
         }
 
         public static IEdmModel GetEdmModel ()
         {
             //ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-            var builder = new ODataModelBuilder();
-            //var OrderType = builder.EntityType<Order>();
-            //builder.Function("GetName")
-            //    .Returns<string>()
-            //    .Parameter<int>("key");
-            //builder.EntitySet<Person>("People");
-            //builder.EntitySet<Car>("Cars");
-            builder.Namespace = typeof(Person).Namespace;
+            var builder = new ODataModelBuilder { Namespace = typeof(Person).Namespace, ContainerName = "DefaultContainer" };
 
-            builder.ContainerName = "DefaultContainer";
-
-            //Singleton stuff
-
-            //var builder = new ODataModelBuilder();
-            //builder.Singleton<Company>("Companies");
-            //builder.Namespace = typeof(Company).Namespace;
-            //builder.Namespace = typeof(Person).Namespace;
-
-            //EntityTypeConfiguration Companies = builder.AddEntityType(typeof(Company));
-            //EntitySetConfiguration<Company> employeesConfiguration = builder.EntitySet<Company>("Companies");
-            //employeesConfiguration.HasSingletonBinding(c => c.Owners, "Owners");
-            //employeesConfiguration.HasSingletonBinding(c => c.OwnedCars, "Cars");
-
-            //Companies.HasKey(typeof(Company).GetProperty("ID"));
-            //EntityTypeConfiguration companyConfig = builder.AddSingleton<Company>("Umbrella");
-            //EntityTypeConfiguration companyConfig = builder.AddEntityType(typeof(Company));
-            //companyConfig.HasKey(typeof(Company).GetProperty("ID"));
-            //companyConfig.HasKey(typeof(Company).GetProperty("Name"));
-
-            EntityTypeConfiguration personConfig = builder.AddEntityType(typeof(Person));
+            var personConfig = builder.AddEntityType(typeof(Person));
             personConfig.HasKey(typeof(Person).GetProperty("ID"));
             personConfig.AddProperty(typeof(Person).GetProperty("Name"));
-            personConfig.AddNavigationProperty(typeof(Person).GetProperty("Car"), EdmMultiplicity.One);
-            //personConfig.AddProperty(typeof(Person).GetProperty("OwnedCar"));
-            //personConfig.AddNavigationProperty(typeof(Person).GetProperty("OwnedCars"), EdmMultiplicity.One);
-            //employeesConfiguration.HasSingletonBinding(c => c.Company, "Umbrella");
+            personConfig.AddNavigationProperty(typeof(Person).GetProperty("Car"), EdmMultiplicity.ZeroOrOne);
+            
 
-            EntityTypeConfiguration carConfig = builder.AddEntityType(typeof(Car));
-
+            var carConfig = builder.AddEntityType(typeof(Car));
             carConfig.HasKey(typeof(Car).GetProperty("ID"));
             carConfig.AddProperty(typeof(Car).GetProperty("AmountMade"));
             carConfig.AddProperty(typeof(Car).GetProperty("APK"));
             carConfig.AddProperty(typeof(Car).GetProperty("Name"));
             carConfig.AddProperty(typeof(Car).GetProperty("TimeWhenAddedToDatabase"));
             carConfig.AddEnumProperty(typeof(Car).GetProperty("Brand"));
-            //carConfig.AddCollectionProperty(typeof(Car).GetProperty("People"));
-            var np = carConfig.AddNavigationProperty(typeof(Car).GetProperty("People"),EdmMultiplicity.Many);
-            //np.
-            
-            //Doesnt get through build: The property 'Name' does not belong to the type 'Demo.Models.Car'.
-            //carConfig.AddProperty(typeof(Person).GetProperty("Name"));
+            carConfig.AddNavigationProperty(typeof(Car).GetProperty("People"), EdmMultiplicity.Many);
 
-            //Builds but than crashes
-            //carConfig.AddComplexProperty(typeof(Car).GetProperty("People"));
-
-            //doesnt even build
-            //carConfig.AddProperty(typeof(Car).GetProperty("People"));
-
-            //new declaration of variabels of the enum
             var _Brands = builder.AddEnumType(typeof(_Brands));
             _Brands.AddMember(Models._Brands.Audi);
             _Brands.AddMember(Models._Brands.BMW);
@@ -111,11 +76,8 @@ namespace Demo
             _Brands.AddMember(Models._Brands.Toyota);
             _Brands.AddMember(Models._Brands.Volkswagen);
 
-            //EntitySetConfiguration Companies = builder.AddEntitySet("companies", companyConfig);
-
-            EntitySetConfiguration People = builder.AddEntitySet("people", personConfig);            
-
-            EntitySetConfiguration Cars = builder.AddEntitySet("cars", carConfig);
+            builder.AddEntitySet("people", personConfig);  
+            builder.AddEntitySet("cars", carConfig);
 
             var edmModel = builder.GetEdmModel();
 
@@ -124,3 +86,21 @@ namespace Demo
         }
     }
 }
+
+//Singleton stuff
+
+//var builder = new ODataModelBuilder();
+//builder.Singleton<Company>("Companies");
+//builder.Namespace = typeof(Company).Namespace;
+//builder.Namespace = typeof(Person).Namespace;
+
+//EntityTypeConfiguration Companies = builder.AddEntityType(typeof(Company));
+//EntitySetConfiguration<Company> employeesConfiguration = builder.EntitySet<Company>("Companies");
+//employeesConfiguration.HasSingletonBinding(c => c.Owners, "Owners");
+//employeesConfiguration.HasSingletonBinding(c => c.OwnedCars, "Cars");
+
+//Companies.HasKey(typeof(Company).GetProperty("ID"));
+//EntityTypeConfiguration companyConfig = builder.AddSingleton<Company>("Umbrella");
+//EntityTypeConfiguration companyConfig = builder.AddEntityType(typeof(Company));
+//companyConfig.HasKey(typeof(Company).GetProperty("ID"));
+//companyConfig.HasKey(typeof(Company).GetProperty("Name"));

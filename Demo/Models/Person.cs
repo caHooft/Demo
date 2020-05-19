@@ -7,12 +7,7 @@ namespace Demo.Models
     public class Person
     {
         public int ID { get; set; }
-
-        //public string OwnedCar { get; set; }
-
         public Car Car { get; set; }
-
-        [Required]
         public String Name { get; set; }
 
         //[Contained]
@@ -24,13 +19,6 @@ namespace Demo.Models
 
         //[Singleton]
         //public Company Company { get; set; }
-
-        //public class Order
-        //{
-        //    public int OrderID { get; set; }
-        //    public string ShippingAddress { get; set; }
-
-        //}
     }
 
     public class Order

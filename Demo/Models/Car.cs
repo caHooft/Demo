@@ -17,7 +17,7 @@ namespace Demo.Models
         public String Name { get; set; }
         public DateTime TimeWhenAddedToDatabase { get; set; }
         public _Brands Brand { get; set; }
-        public List<Person> People { get; set; }
+        public ICollection<Person> People { get; set; }
 
         //[Singleton]
         //public Company Company { get; set; }

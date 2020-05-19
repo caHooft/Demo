@@ -52,15 +52,16 @@ namespace Demo.Controllers
             return Ok(_People.AsQueryable());
         }
 
-        public IHttpActionResult GetCar()
+        [ODataRoute("People({key})/Car")]
+        public IHttpActionResult GetCar(int key)
         {
-            //return Ok(DemoDataSources.Instance.People.AsQueryable());
-            return Ok(DemoDataSources.Instance.Cars[0]);
+            return Ok(_People.First(p => p.ID == key).Car);
         }
 
-        public IHttpActionResult GetCarFromPeople(int key)
+        [ODataRoute("People({key})/Name")]
+        public IHttpActionResult GetName(int key)
         {
-            return Ok(DemoDataSources.Instance.Cars[0]);
+            return Ok(_People.First(p => p.ID == key).Name);
         }
 
         //[EnableQuery]

@@ -7,6 +7,7 @@ using Microsoft.AspNet.OData;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Http;
+using System.Collections.Generic;
 
 namespace Demo.Controllers
 {
@@ -15,20 +16,35 @@ namespace Demo.Controllers
     {
         public static object RouteData { get; internal set; }
 
+        static readonly IList<Car> Cars = DemoDataSources.Instance.Cars.ToList();
+
         public IHttpActionResult Get(int key)
         {
-            return Ok(DemoDataSources.Instance.Cars.First(p => p.ID == key));
+            return Ok(Cars.First(p => p.ID == key));
         }
 
         public IHttpActionResult Get()
         {
-            return Ok(DemoDataSources.Instance.Cars.AsQueryable());
+            return Ok(Cars.AsQueryable());
         }
 
-        //GET /odata/Products(1)/Supplier
-        //public Supplier GetSupplierFromProduct(int key)
+        //[ODataRoute("Cars({key})/Name")]
+        public IHttpActionResult GetName(int key)
+        {
+            return Ok(Cars.First(p => p.ID == key).Name);
+        }
 
-        //public People 
+        //[ODataRoute("Cars({key})/AmountMade")]
+        public IHttpActionResult GetAmountMade(int key)
+        {
+            return Ok(Cars.First(p => p.ID == key).AmountMade);
+        }
+
+        //[ODataRoute("Cars({key})/Persons")]
+        public IHttpActionResult GetPeople(int key)
+        {
+            return Ok(Cars.First(p => p.ID == key).People);
+        }
 
         public HttpResponseMessage Post(Car car)
         {
