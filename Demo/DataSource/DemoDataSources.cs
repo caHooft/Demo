@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Demo.Models;
-using static Demo.Models.Person;
 
 namespace Demo.DataSource
 {
@@ -23,6 +22,19 @@ namespace Demo.DataSource
         }
         public List<Person> People { get; set; }
         public List<Car> Cars { get; set; }
+        public List<Range> Ranges { get; set; }
+
+        //public int minValue { get; set; }
+        //public int maxValue { get; set; }
+        //public struct Range { }
+        //public List<Range> Ranges { get; set; }
+
+        //public struct Ranges
+        //{
+        //    public int min;
+        //    public int max;
+        //}
+
         //public List<Company> Companies { get; set; }
 
 
@@ -36,11 +48,22 @@ namespace Demo.DataSource
         {
             this.People = new List<Person>();
             this.Cars = new List<Car>();
+            this.Ranges = new List<Range>();
+            //this.Ranges = new List<Range>();
             //this.Companies = new List<Company>();
         }
 
         public void Initialize()
         {
+            this.Ranges.AddRange(new List<Range>()
+            {
+                new Range()
+                {
+                    maxValue = 10,
+                    minValue = 0,
+                },
+            });
+
             this.Cars.AddRange(new List<Car>
             {
                 new Car()
@@ -87,7 +110,7 @@ namespace Demo.DataSource
                 {
                    ID = 100,
                    Name="Sam Nasr",
-                   Car = Cars[0],
+                   Car = Cars[0],                 
 
                    //CurrentOrder = new Order()
                    //{
@@ -110,7 +133,7 @@ namespace Demo.DataSource
                    // },
                 },
 
-              new Person()
+            new Person()
                 {
                    ID = 200,
                    Name="James Williams",

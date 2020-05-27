@@ -9,6 +9,9 @@ namespace Demo.Models
         public int ID { get; set; }
         public Car Car { get; set; }
         public String Name { get; set; }
+        public Range minValue { get; set; }
+        public Range maxValue { get; set; }
+        public Range Ranges { get; set; }
 
         //[Contained]
         //public IList<Order> OrdersShipped { get; set; }

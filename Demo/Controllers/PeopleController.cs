@@ -16,23 +16,19 @@ namespace Demo.Controllers
     //[EnableQuery(AllowedQueryOptions = AllowedQueryOptions.All)]
     public class PeopleController : ODataController
     {
-        //guy on the internet claims this should do something
-        //public IHttpActionResult GetClientModel([FromODataUri] int key)
-        //{
-        //    return Ok(_clientsRepository.GetClients(key).Single());
-        //}
-
-        //public IHttpActionResult GetClientModel([FromODataUri] int key)
-        //{
-        //    return Ok(_People..Single());
-        //}
-
-        
-
         private static IList<Person> _People = null;
+        //private static float maxValue = Demo.DataSource.DemoDataSources.Instance.maxValue;
+       // private static float minValue = Demo.DataSource.DemoDataSources.Instance.minValue;
 
         public PeopleController()
         {
+            //if (maxValue == null || minValue == null)
+            //{
+            //    maxValue = Demo.DataSource.DemoDataSources.Instance.maxValue;
+            //    minValue = Demo.DataSource.DemoDataSources.Instance.minValue;
+
+            //}
+
             if (_People == null)
             {
                 //_People = DemoDataSources.Instance.People.ToList();

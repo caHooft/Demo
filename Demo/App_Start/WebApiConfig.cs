@@ -13,23 +13,8 @@ namespace Demo
 {
     public static class WebApiConfig
     {
-        //public static void Register(HttpConfiguration config)
-        //{
-        //    DataSource.DemoDataSources.Instance.Initialize();
-        //    config.MapODataServiceRoute("odata", "odata", GetEdmModel(), new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer));
-        //    config.EnsureInitialized();
-        //}
-
         public static void Register(HttpConfiguration config)
         {
-            //DataSource.DemoDataSources.Instance.Initialize();
-
-            //config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
-            //var bh = new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer);
-            //config.MapODataServiceRoute("OData", "odata", GetEdmModel());
-            //config.MapODataServiceRoute("OData", "odata", GetEdmModel(), new DefaultODataPathHandler(),
-            //ODataRoutingConventions.CreateDefaultWithAttributeRouting("OData", config), bh);
-
             var model = GetEdmModel();
             var pathHandler = new DefaultODataPathHandler();
             var routingConvention = ODataRoutingConventions.CreateDefaultWithAttributeRouting("OData", config);
@@ -47,11 +32,18 @@ namespace Demo
             //ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
             var builder = new ODataModelBuilder { Namespace = typeof(Person).Namespace, ContainerName = "DefaultContainer" };
 
+            ComplexTypeConfiguration<Range> rangeType = builder.ComplexType<Range>();
+            //rangeType.Select();
+            rangeType.Property(c => c.minValue);
+            rangeType.Property(c => c.maxValue);
+
             var personConfig = builder.AddEntityType(typeof(Person));
             personConfig.HasKey(typeof(Person).GetProperty("ID"));
             personConfig.AddProperty(typeof(Person).GetProperty("Name"));
             personConfig.AddNavigationProperty(typeof(Person).GetProperty("Car"), EdmMultiplicity.ZeroOrOne);
-            
+            personConfig.AddComplexProperty(typeof(Person).GetProperty("minValue"));
+            personConfig.AddComplexProperty(typeof(Person).GetProperty("maxValue"));
+            personConfig.AddComplexProperty(typeof(Person).GetProperty("Ranges"));
 
             var carConfig = builder.AddEntityType(typeof(Car));
             carConfig.HasKey(typeof(Car).GetProperty("ID"));
