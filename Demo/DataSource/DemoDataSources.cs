@@ -110,7 +110,13 @@ namespace Demo.DataSource
                 {
                    ID = 100,
                    Name="Sam Nasr",
-                   Car = Cars[0],                 
+                   Car = Cars[0], 
+                   
+                   Ranges = new Range
+                   {
+                       maxValue =10,
+                       minValue=0,
+                   }                
 
                    //CurrentOrder = new Order()
                    //{
@@ -138,6 +144,13 @@ namespace Demo.DataSource
                    ID = 200,
                    Name="James Williams",
                    Car = Cars[1],
+
+
+                   Ranges = new Range
+                   {
+                       maxValue =10,
+                       minValue=0,
+                   }  
 
                    //CurrentOrder = new Order()
                    //{

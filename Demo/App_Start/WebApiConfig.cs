@@ -41,8 +41,8 @@ namespace Demo
             personConfig.HasKey(typeof(Person).GetProperty("ID"));
             personConfig.AddProperty(typeof(Person).GetProperty("Name"));
             personConfig.AddNavigationProperty(typeof(Person).GetProperty("Car"), EdmMultiplicity.ZeroOrOne);
-            personConfig.AddComplexProperty(typeof(Person).GetProperty("minValue"));
-            personConfig.AddComplexProperty(typeof(Person).GetProperty("maxValue"));
+            //personConfig.AddComplexProperty(typeof(Person).GetProperty("minValue"));
+            //personConfig.AddComplexProperty(typeof(Person).GetProperty("maxValue"));
             personConfig.AddComplexProperty(typeof(Person).GetProperty("Ranges"));
 
             var carConfig = builder.AddEntityType(typeof(Car));

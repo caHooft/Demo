@@ -17,18 +17,9 @@ namespace Demo.Controllers
     public class PeopleController : ODataController
     {
         private static IList<Person> _People = null;
-        //private static float maxValue = Demo.DataSource.DemoDataSources.Instance.maxValue;
-       // private static float minValue = Demo.DataSource.DemoDataSources.Instance.minValue;
 
         public PeopleController()
         {
-            //if (maxValue == null || minValue == null)
-            //{
-            //    maxValue = Demo.DataSource.DemoDataSources.Instance.maxValue;
-            //    minValue = Demo.DataSource.DemoDataSources.Instance.minValue;
-
-            //}
-
             if (_People == null)
             {
                 //_People = DemoDataSources.Instance.People.ToList();
